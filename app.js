@@ -66,13 +66,24 @@ const app = feathers();
 app.use('messages', new Messages());
 
 async function processMessages() {
+  app.service('messages').on('created', message => {
+    console.log('Created a new message', message);
+  });
+
+  app.service('messages').on('removed', message => {
+    console.log('Deleted message', message);
+  });
+
   await app.service('messages').create({
     text: 'First message'
   });
 
-  await app.service('messages').create({
+  const lastMessage = await app.service('messages').create({
     text: 'Second message'
   });
+
+  // Remove the message we just created
+  await app.service('messages').remove(lastMessage.id);
 
   const messageList = await app.service('messages').find();
 
