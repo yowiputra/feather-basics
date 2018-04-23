@@ -12,6 +12,7 @@
   "dependencies": {
     "@feathersjs/errors": "^3.3.0",
     "@feathersjs/express": "^1.2.2",
-    "@feathersjs/feathers": "^3.1.4"
+    "@feathersjs/feathers": "^3.1.4",
+    "feathers-memory": "^2.1.1"
   }
 }
